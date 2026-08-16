@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    .page-wrapper {
+        background-color: #E8F0F6;
+        background-image: 
+            radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+            radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.5) 0%, transparent 50%);
+        padding: 40px 5%;
+        min-height: calc(100vh - 200px);
+    }
+
+    .content-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 30px;
+        align-items: start;
+    }
+
+    .main-article {
+        background: var(--white, #ffffff);
+        padding: 50px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+    }
+
+    .main-article h1 {
+        font-size: 26px;
+        color: var(--text-dark, #000000);
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+
+    /* Стили для списка законов */
+    .laws-list {
+        list-style-type: disc;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .laws-list li {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .laws-list a {
+        color: var(--text-dark, #222);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .laws-list a:hover {
+        color: var(--primary-blue, #005689);
+        text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+        .content-grid {
+            grid-template-columns: 1fr;
+        }
+        .main-article {
+            padding: 30px 20px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-wrapper fade-in">
+    <div class="content-grid">
+        
+        <!-- Левая колонка: Нормативная база -->
+        <main class="main-article fade-up">
+            <h1>ЗАКОНОДАТЕЛЬНО-НОРМАТИВНАЯ БАЗА</h1>
+            
+            <ul class="laws-list">
+                <li><a href="https://cbd.minjust.gov.kg/4-3916/edition/788053/ru" target="_blank">ЗАКОН КР от 7 апреля 2009 года N 119 «О культуре».</a></li>
+                <li><a href="https://cbd.minjust.gov.kg/4-140/edition/1018516/ru" target="_blank">ЗАКОН КР от 16 ноября 1998 года N 145 «О библиотечном деле».</a></li>
+                <li><a href="https://cbd.minjust.gov.kg/4-2409/edition/805973/ru" target="_blank">ЗАКОН КР от 25 мая 2017 года N 90 «О внесении изменений в Закон Кыргызской Республики «О библиотечном деле».</a></li>
+                <li><a href="https://cbd.minjust.gov.kg/4-549/edition/508400/ru" target="_blank">ЗАКОН КР г.Бишкек, от 22 ноября 1997 года N 83 "Об обязательном экземпляре документов".</a></li>
+                <li><a href="https://cbd.minjust.gov.kg/4-240/edition/1024655/ru" target="_blank">ЗАКОН КР от 26 июля 1999 года N 91 «Об охране и использовании историко-культурного наследия».</a></li>
+                <li><a href="https://cbd.minjust.gov.kg/4-4147/edition/1096873/ru" target="_blank">ЗАКОН КР от 15 июля 2011 года N 101 «О местном самоуправлении».</a></li>
+                <li><a href="https://cbd.minjust.gov.kg/4-140/edition/1018516/ru" target="_blank">ПОСТАНОВЛЕНИЕ ПРАВИТЕЛЬСТВА КР от 17 июня 2008 года N 308 «О Дне библиотек Кыргызской Республики».</a></li>
+                <li><a href="https://cbd.minjust.gov.kg/4-140/edition/1018516/ru" target="_blank">ПРИКАЗ МИНОБРАЗКУЛЬТУРЫ КР от 10 июня 2002 года N 319/1 «Об утверждении организационно-регламентирующих документов в области библиотечного дела».</a></li>
+                <li><a href="https://cbd.minjust.gov.kg/53-280/edition/748865/ru" target="_blank">ПРОГРАММА Правительства Кыргызской Республики по развитию сферы культуры до 2020 года (утверждена постановлением Правительства КР от 27 октября 2015 года N 736).</a></li>
+            </ul>
+        </main>
+
+        <!-- Правая колонка: Сайдбар -->
+        {% include 'includes/sidebar.html' %}
+
+    </div>
+</div>
+{% endblock %}
