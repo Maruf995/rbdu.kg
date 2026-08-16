@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    /* Основная обертка страницы */
+    .page-wrapper {
+        background-color: #E8F0F6;
+        background-image: 
+            radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+            radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.5) 0%, transparent 50%);
+        padding: 40px 5%;
+        min-height: calc(100vh - 200px);
+    }
+
+    .content-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 30px;
+        align-items: start;
+    }
+
+    /* Блок с основным контентом */
+    .main-article {
+        background: var(--white, #ffffff);
+        padding: 50px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+    }
+
+    .main-article h1, .section-title {
+        font-size: 32px;
+        color: var(--text-dark, #000000);
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+
+    .section-title {
+        margin-top: 40px;
+    }
+
+    /* --- Стили для контактных карточек --- */
+    .contact-card {
+        background-color: var(--primary-blue, #005689);
+        color: var(--white, #ffffff);
+        display: flex;
+        align-items: center;
+        padding: 30px 40px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        gap: 35px;
+    }
+
+    .contact-icon {
+        font-size: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 60px;
+    }
+
+    /* Круглая обводка для иконки телефона */
+    .phone-icon-wrapper {
+        width: 65px;
+        height: 65px;
+        border: 3px solid var(--white, #ffffff);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+    }
+
+    .contact-info {
+        font-size: 20px;
+        font-weight: 800;
+        text-transform: uppercase;
+        line-height: 1.5;
+        letter-spacing: 0.5px;
+    }
+
+    /* --- Стили для графика работы --- */
+    .schedule-box {
+        background-color: var(--primary-blue, #005689);
+        color: var(--white, #ffffff);
+        padding: 35px 40px;
+        border-radius: 8px;
+    }
+
+    .schedule-list {
+        list-style-type: disc;
+        padding-left: 20px;
+        margin: 0;
+    }
+
+    .schedule-list li {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .schedule-list li:last-child {
+        margin-bottom: 0;
+    }
+
+    .schedule-list strong {
+        font-weight: 700;
+    }
+
+    /* Адаптивность для мобильных экранов */
+    @media (max-width: 900px) {
+        .content-grid {
+            grid-template-columns: 1fr;
+        }
+        .main-article {
+            padding: 30px 20px;
+        }
+        .contact-card {
+            padding: 25px 20px;
+            gap: 20px;
+            flex-direction: column;
+            text-align: center;
+        }
+        .contact-info {
+            font-size: 16px;
+        }
+        .schedule-box {
+            padding: 25px 20px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-wrapper fade-in">
+    <div class="content-grid">
+        
+        <!-- Левая колонка: Контакты и График -->
+        <main class="main-article fade-up">
+            <h1>КОНТАКТЫ</h1>
+            
+            <!-- Карточка: Адрес -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="contact-info">
+                    КЫРГЫЗСКАЯ РЕСПУБЛИКА Г. БИШКЕК,<br>
+                    УЛ. ОГОНБАЕВА 242
+                </div>
+            </div>
+
+            <!-- Карточка: Телефон -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <div class="phone-icon-wrapper">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    +996........<br>
+                    +996........
+                </div>
+            </div>
+
+            <!-- Карточка: Email -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fa-regular fa-envelope" style="font-size: 50px;"></i>
+                </div>
+                <div class="contact-info">
+                    ...................
+                </div>
+            </div>
+
+            <div class="section-title">ГРАФИК РАБОТЫ</div>
+
+            <!-- Блок с расписанием -->
+            <div class="schedule-box">
+                <ul class="schedule-list">
+                    <li>Библиотека работает — ежедневно с 9.00 до 18.00<br>(Выходной — воскресенье)</li>
+                    <li><strong>Последняя пятница месяца Библиотека не работает — санитарный день.</strong></li>
+                    <li>Все предпраздничные дни библиотека работает — с 9:00 до 17:00 часов.</li>
+                    <li>С 15 июля по 15 сентября — по летнему расписанию:<br>понедельник, вторник, среда, четверг, пятница, суббота с 9:00 до 18:00</li>
+                    <li><strong>Вход читателей, а также выдача литературы прекращаются за 30 мин. до закрытия библиотеки</strong></li>
+                </ul>
+            </div>
+            
+        </main>
+
+        <!-- Правая колонка: Подключение переиспользуемого сайдбара -->
+        {% include 'includes/sidebar.html' %}
+
+    </div>
+</div>
+{% endblock %}

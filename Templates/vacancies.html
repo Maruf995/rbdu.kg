@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    /* Основные стили страницы */
+    .page-wrapper {
+        background-color: #E8F0F6;
+        background-image: 
+            radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+            radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.5) 0%, transparent 50%);
+        padding: 40px 5%;
+        min-height: calc(100vh - 200px);
+    }
+
+    .content-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 30px;
+        align-items: start;
+    }
+
+    .main-article {
+        background: var(--white, #ffffff);
+        padding: 50px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+    }
+
+    .main-article h1 {
+        font-size: 32px;
+        color: var(--text-dark, #000000);
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+
+    /* --- Стили для карточек вакансий --- */
+    .vacancies-list {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .vacancy-card {
+        background-color: var(--primary-blue, #005689);
+        border-radius: 12px;
+        padding: 35px 40px;
+        color: var(--white, #ffffff);
+        box-shadow: 0 10px 25px rgba(0, 86, 137, 0.15);
+    }
+
+    .vacancy-title {
+        font-size: 26px;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        letter-spacing: 0.5px;
+    }
+
+    .vacancy-salary {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .vacancy-desc {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+    .vacancy-footer {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .apply-btn {
+        background-color: var(--white, #ffffff);
+        color: var(--primary-blue, #005689);
+        text-decoration: none;
+        padding: 12px 30px;
+        border-radius: 30px; /* Кнопка в форме таблетки */
+        font-weight: 800;
+        font-size: 14px;
+        text-transform: uppercase;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .apply-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .vacancy-experience {
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    /* --- Стили для сообщения об отсутствии вакансий --- */
+    .empty-state {
+        background-color: #f8f9fa;
+        border: 2px dashed #cbd5e1;
+        border-radius: 12px;
+        padding: 40px;
+        text-align: center;
+        color: #475569;
+    }
+
+    .empty-state i {
+        font-size: 48px;
+        color: #94a3b8;
+        margin-bottom: 20px;
+    }
+
+    .empty-state h3 {
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        color: var(--primary-blue, #005689);
+    }
+
+    .empty-state p {
+        font-size: 16px;
+        line-height: 1.5;
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 900px) {
+        .content-grid {
+            grid-template-columns: 1fr;
+        }
+        .main-article {
+            padding: 30px 20px;
+        }
+        .vacancy-card {
+            padding: 25px 20px;
+        }
+        .vacancy-footer {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .empty-state p {
+            max-width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-wrapper fade-in">
+    <div class="content-grid">
+        
+        <!-- Левая колонка: Вакансии -->
+        <main class="main-article fade-up">
+            <h1>ВАКАНСИИ</h1>
+            
+            <div class="vacancies-list">
+                <!-- Блок-заглушка статический: выводится, пока мы не подключим базу -->
+                <div class="empty-state">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <h3>В настоящий момент открытых вакансий нет</h3>
+                    <p>Команда укомплектована, и временно мы не ищем новых сотрудников. Как только появятся новые позиции, они будут опубликованы на этой странице.</p>
+                </div>
+            </div>
+            
+        </main>
+
+        <!-- Правая колонка: Подключение переиспользуемого сайдбара -->
+        {% include 'includes/sidebar.html' %}
+
+    </div>
+</div>
+{% endblock %}

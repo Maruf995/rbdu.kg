@@ -106,9 +106,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Bishkek' 
 
 USE_I18N = True
 
@@ -118,7 +118,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+# Указываем Django, где искать общую статику
+STATICFILES_DIRS = [
+    BASE_DIR / 'static', 
+]
+
+# Папка, куда соберется вся статика при команде collectstatic (для деплоя на сервер с Nginx)
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
+# ==========================================
+# МЕДИА (Загружаемые через админку фотографии, документы)
+# ==========================================
+MEDIA_URL = '/media/'
+
+# Папка, куда будут физически сохраняться загруженные файлы
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

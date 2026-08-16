@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    /* Основные стили обертки (если еще не перенесены в глобальный CSS) */
+    .page-wrapper {
+        background-color: #E8F0F6;
+        background-image: 
+            radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+            radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.5) 0%, transparent 50%);
+        padding: 40px 5%;
+        min-height: calc(100vh - 200px);
+    }
+
+    .content-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 30px;
+        align-items: start;
+    }
+
+    .main-article {
+        background: var(--white, #ffffff);
+        padding: 50px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+    }
+
+    .main-article h1 {
+        font-size: 28px;
+        color: var(--text-dark, #000000);
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+
+    /* --- Стили для списка отделов --- */
+    .departments-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px; /* Расстояние между карточками */
+    }
+
+    .department-card {
+        background-color: var(--primary-blue, #005689);
+        border-radius: 8px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        text-decoration: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        min-height: 90px;
+    }
+
+    .department-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 86, 137, 0.2);
+    }
+
+    .dept-img-placeholder {
+        position: absolute;
+        left: 20px;
+        width: 70px;
+        height: 50px;
+        border-radius: 4px;
+        background-image: linear-gradient(to bottom, #D9EAD3 0%, #D9EAD3 60%, #A3D169 60%, #A3D169 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dept-img-placeholder i {
+        color: #fff;
+        font-size: 24px;
+    }
+
+    .dept-title {
+        color: var(--white, #ffffff);
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        text-align: center;
+        max-width: 60%;
+        line-height: 1.4;
+    }
+
+    /* Адаптивность для узких экранов */
+    @media (max-width: 900px) {
+        .content-grid {
+            grid-template-columns: 1fr;
+        }
+        .main-article {
+            padding: 30px 20px;
+        }
+        .department-card {
+            justify-content: flex-start; /* На мобилках выравниваем по левому краю */
+        }
+        .dept-title {
+            margin-left: 90px; /* Отступ под картинку, чтобы текст не наезжал */
+            text-align: left;
+            max-width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-wrapper fade-in">
+    <div class="content-grid">
+        
+        <!-- Левая колонка: Список отделов -->
+        <main class="main-article fade-up">
+            <h1>ОТДЕЛЫ БИБЛИОТЕКИ</h1>
+            
+            <div class="departments-list">
+                <!-- Карточка 1 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">Отдел комплектования и обработки</div>
+                </a>
+
+                <!-- Карточка 2 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">Отдел хранения фондов</div>
+                </a>
+
+                <!-- Карточка 3 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">Информационно-библиографический отдел</div>
+                </a>
+
+                <!-- Карточка 4 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">Отдел периодических изданий</div>
+                </a>
+
+                <!-- Карточка 5 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">Отдел «Балалик»</div>
+                </a>
+
+                <!-- Карточка 6 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">Инновационно-методический отдел и по работе с филиалами</div>
+                </a>
+
+                <!-- Карточка 7 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">Центр «Америка Борбору»</div>
+                </a>
+
+                <!-- Карточка 8 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">Отдел краеведения и литературы «Кыргыз Китеп»</div>
+                </a>
+
+                <!-- Карточка 9 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">Центр литературы и культуры народов</div>
+                </a>
+
+                <!-- Карточка 10 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">Отдел иностранной литературы</div>
+                </a>
+
+                <!-- Карточка 11 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">Отдел «Юношество»</div>
+                </a>
+
+                <!-- Карточка 12 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">Отдел «Искусство»</div>
+                </a>
+
+                <!-- Карточка 13 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">Компьютерный зал</div>
+                </a>
+
+                <!-- Карточка 14 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">STEM Лаборатория (Maker Space)</div>
+                </a>
+
+                <!-- Карточка 15 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">Центр инклюзивного образования «Камкор»</div>
+                </a>
+
+                <!-- Карточка 16 -->
+                <a href="#" class="department-card">
+                    <div class="dept-img-placeholder"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dept-title">Творческая лаборатория «Ийне жип»</div>
+                </a>
+            </div>
+            
+        </main>
+
+        <!-- Правая колонка: Подключение переиспользуемого сайдбара -->
+        {% include 'includes/sidebar.html' %}
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Библиотека им. К. Баялинова{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Глобальные стили (цвета, шрифты, базовые анимации) */
+        :root {
+            --primary-blue: #005689;
+            --light-blue: #E2EFF5;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --bg-wave: #D5E5F0;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+                /* --- Стили для Sidebar (перенести в base.html или style.css) --- */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar-widget {
+            background: var(--white, #ffffff);
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .sidebar-widget h3 {
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--text-dark, #000);
+            font-weight: 800;
+        }
+
+        .sidebar-image {
+            background-color: #A3D169;
+            height: 250px;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            background-image: linear-gradient(to bottom, #D9EAD3 0%, #D9EAD3 60%, #A3D169 60%, #A3D169 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar-image i {
+            font-size: 60px;
+            color: #fff;
+            z-index: 2;
+        }
+
+        .useful-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .useful-links a {
+            display: block;
+            background-color: var(--primary-blue, #005689);
+            color: var(--white, #ffffff);
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+
+        .useful-links a:hover {
+            background-color: #00426a;
+        }
+
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            max-width: 180px;
+            margin: 0 auto;
+        }
+
+        .social-circle {
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-blue, #005689);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .social-circle:hover {
+            transform: scale(1.1);
+        }
+
+        .fade-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in { opacity: 0; transition: opacity 1s ease-out; }
+        .visible { opacity: 1; transform: translateY(0); }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- Импортируем наш хедер -->
+    {% include 'includes/header.html' %}
+
+    <!-- Сюда будет подставляться контент других страниц -->
+    {% block content %}
+    {% endblock %}
+
+    <!-- Импортируем наш футер -->
+    {% include 'includes/footer.html' %}
+
+    <script>
+        // Скрипт для анимаций (работает на всех страницах)
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.fade-up, .fade-in');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

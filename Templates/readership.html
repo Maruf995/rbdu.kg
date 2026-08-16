@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    /* Основная обертка страницы */
+    .page-wrapper {
+        background-color: #E8F0F6;
+        background-image: 
+            radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+            radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.5) 0%, transparent 50%);
+        padding: 40px 5%;
+        min-height: calc(100vh - 200px);
+    }
+
+    .content-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 30px;
+        align-items: start;
+    }
+
+    /* Блок с основным контентом */
+    .main-article {
+        background: var(--white, #ffffff);
+        padding: 50px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+    }
+
+    .main-article h1 {
+        font-size: 28px;
+        color: var(--text-dark, #000000);
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        text-align: center; /* Центрируем заголовок как на макете */
+    }
+
+    /* --- СТИЛЬ 1: Синий заголовок + белый фон --- */
+    .info-header {
+        background-color: var(--primary-blue, #005689);
+        color: var(--white, #ffffff);
+        padding: 12px 20px;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 15px;
+        margin-bottom: 15px;
+        line-height: 1.4;
+    }
+
+    .info-list {
+        list-style-type: disc;
+        padding-left: 40px;
+        margin-bottom: 15px;
+    }
+
+    .info-list li {
+        font-size: 16px;
+        color: var(--text-dark, #222);
+        margin-bottom: 8px;
+        line-height: 1.5;
+    }
+
+    .price-text {
+        font-size: 18px;
+        font-weight: 800;
+        color: var(--text-dark, #000);
+        margin-bottom: 30px;
+        margin-left: 15px;
+    }
+
+    /* --- СТИЛЬ 2: Полностью синие карточки --- */
+    .blue-card {
+        background-color: var(--primary-blue, #005689);
+        color: var(--white, #ffffff);
+        padding: 20px 25px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+
+    .blue-card-title {
+        font-weight: 700;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .blue-card-list {
+        list-style-type: disc;
+        padding-left: 20px;
+        margin: 0;
+    }
+
+    .blue-card-list li {
+        font-size: 14px;
+        margin-bottom: 6px;
+        line-height: 1.5;
+    }
+    
+    .blue-card-list li:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 900px) {
+        .content-grid {
+            grid-template-columns: 1fr;
+        }
+        .main-article {
+            padding: 30px 20px;
+        }
+        .info-list {
+            padding-left: 25px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-wrapper fade-in">
+    <div class="content-grid">
+        
+        <!-- Левая колонка: Основной контент -->
+        <main class="main-article fade-up">
+            <h1>ЧИТАТЕЛЯМ</h1>
+            
+            <!-- Блок 1 -->
+            <div class="info-header">Для приобретения читательского билета на один год необходимо предъявить:</div>
+            <ul class="info-list">
+                <li>Паспорт</li>
+                <li>Справка с места жительства</li>
+                <li>Студенческий билет</li>
+                <li>Фотографию с размером 3*4 - 1шт</li>
+            </ul>
+            <div class="price-text">Стоимость: 25 сом</div>
+
+            <!-- Блок 2 -->
+            <div class="info-header">Для приобретения разового читательского билета необходимо предъявить:</div>
+            <ul class="info-list">
+                <li>выдаются только на основании документов, удостоверяющих личность</li>
+            </ul>
+            <div class="price-text">Стоимость: 5 сом</div>
+
+            <!-- Блок 3 -->
+            <div class="info-header">Для приобретения читательского билета для школьников необходимо предъявить:</div>
+            <ul class="info-list" style="margin-bottom: 30px;">
+                <li>Свидетельство о рождении</li>
+                <li>Паспорт одного из родителей (можно копию документа)</li>
+                <li>Фотографию с размером 3*4 - 1 шт</li>
+            </ul>
+
+            <!-- Карточка 1: Правила -->
+            <div class="blue-card">
+                <div class="blue-card-title">Правила пользования книгами</div>
+                <ul class="blue-card-list">
+                    <li>Книги выдаются на срок до ... дней</li>
+                    <li>Редкие издания доступны только в читальном зале</li>
+                    <li>Возможно продление срока .....</li>
+                    <li>залог за книгу......</li>
+                    <li>Максимум ..... книг одновременно</li>
+                </ul>
+            </div>
+
+            <!-- Карточка 2: Услуги -->
+            <div class="blue-card">
+                <div class="blue-card-title">Услуги для читателей</div>
+                <ul class="blue-card-list">
+                    <li>Бесплатный Wi-Fi на территории библиотеки</li>
+                    <li>Коворкинг-зона для работы и учебы</li>
+                    <li>Компьютеры с доступом к электронным ресурсам</li>
+                    <li>Копирование и сканирование документов</li>
+                </ul>
+            </div>
+
+            <!-- Карточка 3: Обязанности -->
+            <div class="blue-card">
+                <div class="blue-card-title">Обязанности читателя</div>
+                <ul class="blue-card-list">
+                    <li>Бережно относиться к книгам и имуществу библиотеки</li>
+                    <li>Возвращать книги в установленный срок</li>
+                    <li>Сообщать об утере или повреждении книг</li>
+                    <li>Соблюдать тишину в читальных залах</li>
+                    <li>Уважительно относиться к сотрудникам и другим читателям</li>
+                </ul>
+            </div>
+
+            <!-- Карточка 4: Запрещается -->
+            <div class="blue-card" style="margin-bottom: 0;">
+                <div class="blue-card-title">Запрещается</div>
+                <ul class="blue-card-list">
+                    <li>Выносить книги без оформления</li>
+                    <li>Делать пометки в книгах</li>
+                    <li>Вырывать страницы</li>
+                    <li>Передавать читательский билет другим лицам</li>
+                    <li>Шуметь в читальных залах</li>
+                    <li>Употреблять пищу и напитки в залах</li>
+                </ul>
+            </div>
+            
+        </main>
+
+        <!-- Правая колонка: Подключение переиспользуемого сайдбара -->
+        {% include 'includes/sidebar.html' %}
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,218 @@
+{% load static %}
+
+<style>
+    /* Стили только для шапки и меню */
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 5%;
+        background: var(--white);
+    }
+
+    .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .logo-placeholder {
+        width: 60px;
+        height: 60px;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23005689" stroke-width="2"/><path d="M20,80 L80,80 L80,20 L20,20 Z" fill="none" stroke="%23005689" stroke-width="2"/><circle cx="50" cy="50" r="15" fill="%23005689"/></svg>') no-repeat center center/contain;
+    }
+
+    .logo-text {
+        font-size: 14px;
+        color: var(--primary-blue);
+        max-width: 300px;
+        line-height: 1.2;
+    }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .bell-icon {
+        color: var(--primary-blue);
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .login-btn {
+        background-color: var(--primary-blue);
+        color: var(--white);
+        border: none;
+        padding: 10px 25px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.3s;
+    }
+
+    .login-btn:hover {
+        background-color: #00426a;
+    }
+
+    nav {
+        background-color: var(--primary-blue);
+        padding: 15px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        /* Усиливаем приоритет: */
+        position: relative; 
+        z-index: 1000 !important; 
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+    }
+
+    .nav-links a {
+        color: var(--white);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        transition: opacity 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        text-transform: uppercase; /* Добавлено для соответствия макету */
+    }
+
+    .nav-links a:hover {
+        opacity: 0.8;
+    }
+
+    /* Выпадающее меню */
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown-content {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        background-color: var(--white);
+        min-width: 240px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        left: 0;
+        z-index: 9999; 
+        padding: 10px 0;
+        
+        /* НОВЫЙ СПОСОБ АНИМАЦИИ ВЫПАДАНИЯ */
+        top: 100%; /* Фиксируем меню ровно под ссылкой */
+        transform: translateY(20px); /* Изначально сдвигаем меню вниз на 20px */
+        transition: all 0.3s ease;
+    }
+
+    .dropdown:hover .dropdown-content {
+        visibility: visible;
+        opacity: 1;
+        
+        /* Возвращаем меню в исходную точку */
+        transform: translateY(0); 
+    }
+
+    .dropdown-content a {
+        color: var(--text-dark);
+        padding: 12px 20px;
+        font-weight: 500;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .dropdown-content a:last-child {
+        border-bottom: none;
+    }
+
+    .dropdown-content a:hover {
+        background-color: var(--light-blue);
+        color: var(--primary-blue);
+        opacity: 1;
+    }
+
+    .search-bar {
+        display: flex;
+        align-items: center;
+        background: var(--white);
+        border-radius: 20px;
+        padding: 5px 15px;
+        width: 250px;
+    }
+
+    .search-bar input {
+        border: none;
+        outline: none;
+        width: 100%;
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    .search-bar i {
+        color: var(--primary-blue);
+        cursor: pointer;
+    }
+    
+    @media (max-width: 900px) {
+        .nav-links {
+            display: none;
+        }
+    }
+</style>
+
+<header class="fade-in">
+    <div class="logo-section">
+        <div class="logo-placeholder"></div>
+        <div class="logo-text">
+            Республиканская библиотека<br>
+            для детей и юношества<br>
+            им. К. Баялинова
+        </div>
+    </div>
+    <div class="header-actions">
+        <i class="fa-solid fa-bell bell-icon"></i>
+        <button class="login-btn">Вход</button>
+    </div>
+</header>
+
+<nav class="fade-in">
+    <ul class="nav-links">
+        <li class="dropdown">
+            <a href="#">О библиотеке <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i></a>
+            <div class="dropdown-content">
+                <a href="{% url 'history-page' %}">История библиотеки</a>
+                <a href="{% url 'department-page' %}">Отделы</a>
+                <a href="{% url 'services-page' %}">Услуги</a>
+                <a href="{% url 'vacancies-page' %}">Вакансии</a>
+                <a href="#">Сотрудничество</a>
+                <a href="">Благотворительность</a>
+                <a href="{% url 'law-page' %}">Закон. норм. баз</a>
+                <a href="#">Тех. оборудование</a>
+            </div>
+        </li>
+        <li><a href="{% url 'readership-page' %}">Читателям</a></li>
+        <li class="dropdown">
+            <a href="#">Мероприятия <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i></a>
+            <div class="dropdown-content">
+                <a href="">Новости</a>
+                <a href="{% url 'events-page' %}">Календарь мероприятий</a>
+                <a href="">Клубы и занятия</a>
+                <a href="{% url 'volunteer-page' %}">Волонтеры</a>
+                <a href="">Фотогалерея</a>
+            </div>
+        </li>
+        <li><a href="#">Электронная библиотека</a></li>
+        <li><a href="{% url 'contact-page' %}">Контакты</a></li>
+    </ul>
+    <div class="search-bar">
+        <input type="text" placeholder="Поиск...">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+</nav>

@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    /* Основные стили обертки (если они еще не в глобальном CSS) */
+    .page-wrapper {
+        background-color: #E8F0F6;
+        background-image: 
+            radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+            radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.5) 0%, transparent 50%);
+        padding: 40px 5%;
+        min-height: calc(100vh - 200px);
+    }
+
+    .content-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 30px;
+        align-items: start;
+    }
+
+    .main-article {
+        background: var(--white, #ffffff);
+        padding: 50px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+    }
+
+    .main-article h1 {
+        font-size: 32px;
+        color: var(--text-dark, #000000);
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+
+    /* --- Стили для страницы Услуг --- */
+    .service-category-title {
+        background-color: var(--primary-blue, #005689);
+        color: var(--white, #ffffff);
+        padding: 12px 30px;
+        border-radius: 30px; /* Создает форму "таблетки" */
+        font-weight: 700;
+        font-size: 15px;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-top: 10px;
+        margin-bottom: 25px;
+        line-height: 1.4;
+        max-width: 95%; /* Чтобы плашка не прилипала к правому краю на мобильных */
+    }
+
+    .services-list {
+        padding-left: 20px; /* Отступ для маркеров списка */
+        margin-bottom: 40px;
+        list-style-type: disc;
+    }
+
+    .services-list li {
+        font-size: 15px;
+        line-height: 1.6;
+        color: var(--text-dark, #222);
+        margin-bottom: 8px;
+    }
+
+    .services-list li:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Адаптивность для мобильных устройств */
+    @media (max-width: 900px) {
+        .content-grid {
+            grid-template-columns: 1fr;
+        }
+        .main-article {
+            padding: 30px 20px;
+        }
+        .service-category-title {
+            padding: 12px 20px;
+            font-size: 14px;
+            border-radius: 20px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-wrapper fade-in">
+    <div class="content-grid">
+        
+        <!-- Левая колонка: Основной контент -->
+        <main class="main-article fade-up">
+            <h1>УСЛУГИ</h1>
+            
+            <!-- Блок бесплатных услуг -->
+            <div class="service-category-title">
+                БЕСПЛАТНЫЕ УСЛУГИ, ПРЕДОСТАВЛЯЕМЫЕ<br>
+                ПОЛЬЗОВАТЕЛЯМ БИБЛИОТЕКИ
+            </div>
+            
+            <ul class="services-list">
+                <li>Пользование книжным фондом библиотеки.</li>
+                <li>Работа с документами и материалами в читальных залах.</li>
+                <li>Доступ к электронным ресурсам библиотеки.</li>
+                <li>Консультации библиотекарей по поиску информации и литературы.</li>
+                <li>Пользование справочно-библиографическим аппаратом.</li>
+                <li>Доступ к периодическим изданиям (газетам и журналам).</li>
+                <li>Участие в культурно-просветительских мероприятиях библиотеки.</li>
+                <li>Участие в книжных выставках, встречах и мастер-классах.</li>
+                <li>Пользование компьютерами и доступом к сети Интернет.</li>
+                <li>Посещение образовательных и творческих программ библиотеки.</li>
+                <li>Получение информации о новых поступлениях и мероприятиях.</li>
+                <li>Обслуживание пользователей с ограниченными возможностями здоровья.</li>
+            </ul>
+
+            <!-- Блок платных услуг -->
+            <div class="service-category-title">
+                ПЛАТНЫЕ УСЛУГИ, ПРЕДОСТАВЛЯЕМЫЕ ПОЛЬЗОВАТЕЛЯМ<br>
+                БИБЛИОТЕКИ
+            </div>
+            
+            <ul class="services-list" style="margin-bottom: 0;">
+                <li>Проведение тематических экскурсий по предварительной заявке.</li>
+                <li>Организация и проведение мастер-классов, тренингов и образовательных программ.</li>
+                <li>Аренда помещений для проведения мероприятий.</li>
+                <li>Фото- и видеосъёмка в помещениях библиотеки по согласованию.</li>
+                <li>Проведение культурных, образовательных и досуговых мероприятий на договорной основе.</li>
+            </ul>
+        </main>
+
+        <!-- Правая колонка: Подключение переиспользуемого сайдбара -->
+        {% include 'includes/sidebar.html' %}
+
+    </div>
+</div>
+{% endblock %}
